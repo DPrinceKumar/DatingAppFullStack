@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddCors();
 
 //connecting to sql lite 
 builder.Services.AddDbContext<AppUserDataContext>(option => {
@@ -33,6 +33,9 @@ if (app.Environment.IsDevelopment())
 
 // authorize the incoming request
 app.UseAuthorization();
+
+//CORS allowed 
+app.UseCors(policyBuilder => policyBuilder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
 
 //maps the controller to the service atline #4 
 app.MapControllers();
