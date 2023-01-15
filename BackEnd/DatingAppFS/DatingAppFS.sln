@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatingAppFS", "DatingAppFS.csproj", "{416BBD80-C1A7-420B-BAC2-6D84DE5AC760}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{416BBD80-C1A7-420B-BAC2-6D84DE5AC760}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{416BBD80-C1A7-420B-BAC2-6D84DE5AC760}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{416BBD80-C1A7-420B-BAC2-6D84DE5AC760}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{416BBD80-C1A7-420B-BAC2-6D84DE5AC760}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F580A80-CF52-4F6E-93DC-A1ACE68FA03A}
+	EndGlobalSection
+EndGlobal
