@@ -5,6 +5,7 @@ using DatingAppFS.Entity;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 /**
  *  ApiController is written to say that it's not any MVC controller
@@ -14,10 +15,8 @@ using Microsoft.EntityFrameworkCore;
  */
 namespace DatingAppFS.Controllers
 {
-    [ApiController]
-
-    [Route("/api/[controller]")]
-    public class UsersController
+    [Authorize]
+    public class UsersController: BaseApiController
     {
         private readonly AppUserDataContext _dataContext;
 
@@ -28,6 +27,7 @@ namespace DatingAppFS.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route("/api/getInfo")]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {

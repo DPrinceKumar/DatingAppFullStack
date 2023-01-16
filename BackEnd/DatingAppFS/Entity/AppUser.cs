@@ -1,4 +1,6 @@
-﻿namespace DatingAppFS.Entity
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DatingAppFS.Entity
 {
     public class AppUser
     {
@@ -14,5 +16,7 @@
 
         public int Id { get; set; }
         public string UserName { get; set; }
+        public byte[] Password { get; set; }
+        public byte[] SaltedPassword { get; set; }
     }
 }
