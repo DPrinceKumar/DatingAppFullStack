@@ -1,0 +1,19 @@
+<div class="container mt-5">
+    <div *ngIf="!registerMode" style="text-align: center;">
+        <h1>Find Your Match</h1>
+        <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt accusamus ab doloremque, corporis quas iusto mollitia quasi repellendus! Ut pariatur quidem excepturi. Error explicabo sed asperiores quis beatae excepturi hic!
+        Vero ducimus odit et dolorum enim. Amet impedit, voluptates atque dolore corporis recusandae aperiam at obcaecati enim. Aspernatur sapiente ipsa atque consequuntur reprehenderit dolorem, quibusdam error eaque iste corrupti. Rerum.
+        Minima doloremque quidem accusamus autem tenetur quibusdam, aliquid cum rem sapiente laboriosam optio quasi molestias. At quis porro vero aliquid officia in deleniti, repellat quos? Tempora deserunt fugiat assumenda accusamus.</p>
+        <div class="text-center">
+            <button (click)="registerModeToggle()" class="btn btn-primary btn-lg me-2">Register</button>
+            <button class="btn btn-info btn-lg me-2">Learn More</button>
+        </div>
+    </div>
+    <div class="container" *ngIf="registerMode">
+        <div class="row justify-content-center">
+                               <!-- input                         Output -->
+                <!-- <app-register [usersFromHomeComponent]="users" (cancleRegister)="cancleRegisterMode($event)"></app-register> -->
+                <app-register (cancleRegister)="cancleRegisterMode($event)"></app-register>
+        </div>
+    </div>
+</div>

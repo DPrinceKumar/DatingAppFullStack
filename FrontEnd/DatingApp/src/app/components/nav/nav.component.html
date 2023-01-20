@@ -1,0 +1,49 @@
+<header>
+    <div class="px-3 py-2 bg-dark text-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                    Dating
+                </a>
+
+                <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small" *ngIf="_accountServ.currentUserSource$  |async">
+                    <li>
+                        <a href="#" class="nav-link text-secondary">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <div class="dropdown bg-dark text-dark" *ngIf="_accountServ.currentUserSource$ |async">
+                            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Welcome {{getCurrentUSer()}}
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" >Edit Profile</a></li>
+                                <li><a class="dropdown-item" (click)="logOut()">Log Out</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="px-3 py-2 border-bottom mb-3" *ngIf="!(_accountServ.currentUserSource$ |async)">
+        <div class="container d-flex">
+            <form class="col-10 d-flex" #loginForm="ngForm" (ngSubmit)="login()">
+                <input type="text" class="form-control" placeholder="User Name" name="userName"
+                    [(ngModel)]="model.userName">
+                <input type="password" class="form-control mx-5" placeholder="Password" name="password"
+                    [(ngModel)]="model.password">
+                <button type="submit" class="btn btn-light text-dark me-2">Login</button>
+            </form>
+
+            <div class="text-end">
+                <button type="button" class="btn btn-primary">Sign-up</button>
+            </div>
+        </div>
+    </div>
+</header>
