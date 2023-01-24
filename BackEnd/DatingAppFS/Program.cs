@@ -1,4 +1,5 @@
 using DatingAppFS.Extension;
+using DatingAppFS.Middlewere;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,15 @@ builder.Services.AddAppIdentity(builder.Configuration);
 
 
 var app = builder.Build();
+
+//Generating development error page 
+/*if (builder.Environment.IsProduction())
+{
+    app.UseDeveloperExceptionPage();
+}
+*/
+
+app.UseMiddleware<ExceptionMiddlewere>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

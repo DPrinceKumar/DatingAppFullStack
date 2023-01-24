@@ -33,7 +33,8 @@ namespace DatingAppFS.Extension
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding
                             .UTF8.GetBytes(config["TokenKey"])),
                         ValidateIssuer = false,
-                        ValidateAudience = false
+                        ValidateAudience = false,
+                        
                     };
                 });
             return services;
