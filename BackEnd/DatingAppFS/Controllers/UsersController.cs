@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-using DatingAppFS.Data;
-using DatingAppFS.Entity;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using DatingAppFS.DTOs;
+using DatingAppFS.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 /**
  *  ApiController is written to say that it's not any MVC controller
@@ -18,29 +15,33 @@ namespace DatingAppFS.Controllers
     [Authorize]
     public class UsersController: BaseApiController
     {
-        private readonly AppUserDataContext _dataContext;
+		private readonly IUserRepository _userRepository;
+		private readonly IMapper _mapper;
 
-        public UsersController(AppUserDataContext dataContext)
+		public UsersController(IUserRepository userRepository,IMapper mapper)
         {
-            //  this._dataContext = dataContext;
-            _dataContext = dataContext;
-        }
+			_userRepository = userRepository;
+			_mapper = mapper;
+			//  this._userRepository = dataContext;
+		}
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("/api/getInfo")]
-        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
+        [Route("getInfo")]
+        public async Task<ActionResult<IEnumerable<MemberDTO>>> GetUsers()
         {
-            var users = await _dataContext.Users.ToListAsync();
+            var users = await _userRepository.GetMembersAsync();
+         //   var usersToReturn = _mapper.Map<IEnumerable<MemberDTO>>(users);
 
-            return users;
+            return Ok(users);
+
         }
 
 
-        [HttpPost("/search/{id}")]
-        public async Task<ActionResult<AppUser>> GetUser(int id)
+        [HttpGet("{username}")]
+        public async Task<ActionResult<MemberDTO>> GetUser(string username)
         {
-            return await _dataContext.Users.FindAsync(id);     //FirstOrDefault will return first occurce in databse 
+            return await _userRepository.GetMemberAsync(username);  //FirstOrDefault will return first occurce in databse 
         }
     }
 }

@@ -1,5 +1,7 @@
+using DatingAppFS.Data;
 using DatingAppFS.Extension;
 using DatingAppFS.Middlewere;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +48,21 @@ app.UseAuthentication();
 app.UseAuthorization();
 //maps the controller to the service atline #4 
 app.MapControllers();
+
+using var scope =app.Services.CreateScope();
+var services =scope.ServiceProvider;
+try
+{
+    var context =services.GetRequiredService<AppUserDataContext>();
+    await context.Database.MigrateAsync();
+    await Seed.SeedUsers(context);
+}
+catch (Exception e)
+{
+
+	var logger =services.GetService<ILogger<Program>>();
+    logger.LogError(e, "An error COccured during Migration");
+}
 
 app.Run();
 

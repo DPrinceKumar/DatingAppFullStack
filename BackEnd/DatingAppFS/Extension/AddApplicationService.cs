@@ -23,6 +23,9 @@ namespace DatingAppFS.Extension
             //JWT (Json Web Token)      token servive, class where that service is implemented
             services.AddScoped<ITokenService, TokenServices>();
 
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
             return services;
